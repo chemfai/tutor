@@ -1,6 +1,0 @@
-<?php
-
-if (!$ROOT){
-    exit;
-}
-
