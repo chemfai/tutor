@@ -1,6 +1,8 @@
 <?php
 require_once (dirname(__FILE__)."/library/init.php");
 
+extract($_REQUEST);
+
 $full_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 if (empty($path)){
