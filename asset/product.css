@@ -1,0 +1,44 @@
+.product-quote{width:500px;height:120px;border:1px solid #eee;background:#fff;margin-top:5px}
+.product-quote h2{margin:0;font-size:14px;line-height:20px;height:20px;overflow:hidden}
+.product-quote h2,
+.product-quote .address,
+.product-quote .post_by,
+.product-quote .rating{padding:0 5px;overflow:hidden}
+.product-quote .address{font-size:10px;line-height:20px;height:40px;}
+.product-quote .rating{font-size:10px;line-height:20px;height:20px;padding-right:0;}
+.product-quote .post_by{font-size:10px;line-height:20px;height:20px;color:#ddd;padding-left:0}
+.product-quote .image-container{width:149px;height:120px;overflow:hidden;background:#fff;border-right:1px solid #eee}
+.product-quote .highlight-container{width:248px;height:80px;overflow:hidden;}
+.product-quote .comment-container{width:248px;height:40px;overflow:hidden;border-top:1px solid #eee;text-align:center;padding-top:10px;color:#999;font-size:14px;line-height:20px;}
+.product-quote .price-container{width:98px;height:80px;border-left:1px solid #eee;overflow:hidden;font-family:arial;text-align:center;}
+.product-quote .price-title{color:#ccc;font-size:10px;margin-top:15px}
+.product-quote .original-price{text-decoration: line-through;font-size:50%}
+.product-quote .selling-price{color:red;font-weight:bold;font-size:100%;}
+.product-quote .button-container{width:102px;height:40px;overflow:hidden}
+.product-quote .tips-container{width:140px;height:40px;overflow:hidden;font-size:10px;color:#999}
+.product-quote .button-container button{width:100%;height:40px;border:0;overflow:hidden;cursor:pointer}
+.product-quote .button-container:hover{box-shadow:1px 1px 3px #999}
+.product-detail .product-comment{width:100%;min-height:60px}
+.product-detail .comment{width:100%;}
+.product-detail .comment-container{position:relative;width:416px;padding:5px 10px;border:1px solid #eee;border-radius:5px;margin-left:10px;margin-bottom:10px}
+.product-detail .comment-user{text-decoration:italic;color:#ccc}
+.product-detail .comment-add-container{width:450px;height:50px}
+.product-detail .comment-content{font-size:10px;z-index:1;overflow:hidden}
+.product-detail .comment-date{font-size:10px;color:#ddd}
+.product-detail .action li{padding:10px 5px;color:#999;}
+.product-detail .action li{font-size:8px;}
+.product-detail .content{background:#eee;color:#000;font-size:10px}
+.product-detail .content{padding:10px;margin-bottom:5px;}
+.product-detail .comment-add {padding:10px 0}
+.product-detail .comment-add .textarea-container{padding:0;width:400px;height:50px;font-size:10px;color:#999}
+.product-detail .comment-add .textarea-container textarea{margin:0;padding:9px 10px;margin-left:10px;width:370px;height:30px;font-size:10px;color:#999}
+.product-detail .comment-add button{width:50px;height:50px;font-size:10px;}
+.product-quote-new .highlight-container{width:228px;height:120px;overflow:hidden;padding:2px 10px}
+.product-quote-new .highlight-container input{width:220px;margin:1px 0;}
+.product-quote-new .highlight-container textarea{width:222px;margin:1px 0}
+.product-quote-new .button-container button{width:100%;height:40px;border:0;overflow:hidden;cursor:pointer}
+.product-quote-confirm .highlight-container{width:248px;height:80px;overflow:hidden;padding:0}
+.price-currency{font-size:10px;}
+.product-price{text-align:center;width:80px}
+.product-quote-new.button{padding:0 20px;margin:0;font-size:14px}
+.product-quote .detail-title{color:#ccc}

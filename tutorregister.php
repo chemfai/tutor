@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>Untitled Document</title>
-<link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <script type="text/javascript" src="js/angular.min.js" defer></script>
@@ -71,9 +70,9 @@
 				<div class="section-c">
 					<script type="text/javascript" src="js/regform.js" defer></script>
 					<div class="reg-form" ng-app="regform" ng-controller="regCtrl">
-						<form method="post" name="tutor_reg" novalidate>
+						<form method="post" action="tutorregister_thankyou.php" name="tutor_reg" id="tutor_reg" novalidate>
 							<div class="reg-step" ng-show="step == 1">
-								<h5>個人資料</h5>
+								<h5 class="tm-h5">個人資料</h5>
 								<div class="row">
 									<div class="field-label"><label for="reg_email">電子郵件地址<span>*</span></label></div>
 									<div class="field-input">
@@ -112,20 +111,24 @@
 								<div class="row">
 									<div class="field-label"><label for="reg_gender">性別<span>*</span></label></div>
 									<div class="field-input">
-										<input type="radio" name="reg_gender" id="reg_gender_m" value="m" ng-model="formData.reg_gender" required>
-										<label class="fakebox" for="reg_gender_m">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">男</span>
-										<input type="radio" name="reg_gender" id="reg_gender_f" value="f" ng-model="formData.reg_gender" required>
-										<label class="fakebox" for="reg_gender_f">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">女</span>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_gender" id="reg_gender_m" value="m" ng-model="formData.reg_gender" required>
+											<label class="fakebox" for="reg_gender_m">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">男</span>
+										</div>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_gender" id="reg_gender_f" value="f" ng-model="formData.reg_gender" required>
+											<label class="fakebox" for="reg_gender_f">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">女</span>
+										</div>
 										<div class="error-msg" ng-messages="tutor_reg.reg_gender.$error" ng-if='errMsg.reg_gender'>
 											<div ng-message="required">請輸入你的性別</div>
 										</div>
@@ -152,28 +155,19 @@
 								<div class="row">
 									<div class="field-label"><label for="reg_mainlang">主要語言<span>*</span></label></div>
 									<div class="field-input">
-										<input type="checkbox" name="reg_mainlang" id="reg_mainlang_cantonese" ng-model="formData.mainLang[1]" value="cantonese" ng-required="!someSelected(formData.mainLang)">
-										<label class="fakebox" for="reg_mainlang_cantonese">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">粵語</span>
-										<input type="checkbox" name="reg_mainlang" id="reg_mainlang_mandarin" ng-model="formData.mainLang[2]" value="mandarin" ng-required="!someSelected(formData.mainLang)">
-										<label class="fakebox" for="reg_mainlang_mandarin">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">普通話</span>
-										<input type="checkbox" name="reg_mainlang" id="reg_mainlang_english" ng-model="formData.mainLang[3]" value="english" ng-required="!someSelected(formData.mainLang)">
-										<label class="fakebox" for="reg_mainlang_english">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">英語</span>
-										<div class="error-msg" ng-messages="tutor_reg.reg_mainlang.$error" ng-if='tutor_reg.reg_mainlang.$dirty || errMsg.reg_mainlang'>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_mainlang[]" value="cantonese" cid="reg_mainlang_cantonese" bind="formData['mainLang']['reg_mainlang_cantonese']" crequired="!someSelected(formData.mainLang)"></fakecheckbox>
+											<span class="option-caption">粵語</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_mainlang[]" value="mandarin" cid="reg_mainlang_mandarin" bind="formData['mainLang']['reg_mainlang_mandarin']" crequired="!someSelected(formData.mainLang)"></fakecheckbox>
+											<span class="option-caption">普通話</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_mainlang[]" value="english" cid="reg_mainlang_english" bind="formData['mainLang']['reg_mainlang_english']" crequired="!someSelected(formData.mainLang)"></fakecheckbox>
+											<span class="option-caption">英語</span>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg['reg_mainlang[]']['$error']" ng-if="errMsg['reg_mainlang[]']">
 											<div ng-message="required">請輸入你的主要語言</div>
 										</div>
 									</div>
@@ -186,7 +180,7 @@
 								</div>
 							</div>
 							<div class="reg-step" ng-show="step == 2">
-								<h5>聯繫資料</h5>
+								<h5 class="tm-h5">聯繫資料</h5>
 								<div class="row">
 									<div class="field-label"><label for="reg_address">固定住宅地址<span class="np">（非公開）</span><span>*</span></label></div>
 									<div class="field-input">
@@ -292,20 +286,24 @@
 								<div class="row">
 									<div class="field-label"><label for="reg_residental">現居住地點<span class="np">（非公開）</span><span>*</span></label></div>
 									<div class="field-input">
-										<input type="radio" name="reg_residental" id="reg_residental_apartment" value="住宅" ng-model="formData.reg_residental" required>
-										<label class="fakebox" for="reg_residental_apartment">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">住宅</span>
-										<input type="radio" name="reg_residental" id="reg_residental_hostel" value="學校宿舍" ng-model="formData.reg_residental" required>
-										<label class="fakebox" for="reg_residental_hostel">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">學校宿舍</span>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_residental" id="reg_residental_apartment" value="住宅" ng-model="formData.reg_residental" required>
+											<label class="fakebox" for="reg_residental_apartment">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">住宅</span>
+										</div>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_residental" id="reg_residental_hostel" value="學校宿舍" ng-model="formData.reg_residental" required>
+											<label class="fakebox" for="reg_residental_hostel">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">學校宿舍</span>
+										</div>
 										<div class="error-msg" ng-messages="tutor_reg.reg_residental.$error" ng-if='errMsg.reg_residental'>
 											<div ng-message="required">請輸入你的現居住地點</div>
 										</div>
@@ -333,7 +331,7 @@
 								</div>
 							</div>
 							<div class="reg-step" ng-show="step == 3">
-								<h5>聯繫資料</h5>
+								<h5 class="tm-h5">聯繫資料</h5>
 								<div class="row">
 									<div class="field-label"><label for="reg_contact_person">聯絡人姓名</label></div>
 									<div class="field-input">
@@ -377,7 +375,7 @@
 								</div>
 							</div>
 							<div class="reg-step" ng-show="step == 4">
-								<h5>職業履歷資料</h5>
+								<h5 class="tm-h5">職業履歷資料</h5>
 								<div class="row">
 									<div class="field-label"><label for="reg_occupation">現時職業<span>*</span></label></div>
 									<div class="field-input">
@@ -518,7 +516,7 @@
 								</div>
 							</div>
 							<div class="reg-step" ng-show="step == 5">
-								<h5>學業履歷</h5>
+								<h5 class="tm-h5">學業履歷</h5>
 								<div class="row">
 									<div class="field-label"><label for="reg_highest_grade">最高教育程度<span>*</span></label></div>
 									<div class="field-input">
@@ -668,27 +666,33 @@
 								<div class="row">
 									<div class="field-label"><label for="reg_hkcee_lang">香港中學會考主要應考語言<span>*</span></label></div>
 									<div class="field-input">
-										<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_eng" value="英文" ng-model="formData.reg_hkcee_lang" required>
-										<label class="fakebox" for="reg_hkcee_lang_eng">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">英文</span>
-										<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_chi" value="中文" ng-model="formData.reg_hkcee_lang" required>
-										<label class="fakebox" for="reg_hkcee_lang_chi">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">中文</span>
-										<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_none" value="未有應考" ng-model="formData.reg_hkcee_lang" required>
-										<label class="fakebox" for="reg_hkcee_lang_none">
-											<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
-											<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
-											</svg>
-										</label>
-										<span class="option-caption">未有應考</span>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_eng" value="英文" ng-model="formData.reg_hkcee_lang" required>
+											<label class="fakebox" for="reg_hkcee_lang_eng">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">英文</span>
+										</div>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_chi" value="中文" ng-model="formData.reg_hkcee_lang" required>
+											<label class="fakebox" for="reg_hkcee_lang_chi">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">中文</span>
+										</div>
+										<div class="tm-options-container">
+											<input type="radio" name="reg_hkcee_lang" id="reg_hkcee_lang_none" value="未有應考" ng-model="formData.reg_hkcee_lang" required>
+											<label class="fakebox" for="reg_hkcee_lang_none">
+												<svg x="0px" y="0px" viewBox="0 0 83.1 65.5" enable-background="new 0 0 83.1 65.5" xml:space="preserve">
+												<polyline points="6.4,28.4 25.6,53.7 77.7,5.9 "/>
+												</svg>
+											</label>
+											<span class="option-caption">未有應考</span>
+										</div>
 										<div class="error-msg" ng-messages="tutor_reg.reg_hkcee_lang.$error" ng-if='errMsg.reg_hkcee_lang'>
 											<div ng-message="required">請輸入你的香港中學會考主要應考語言</div>
 										</div>
@@ -696,10 +700,10 @@
 								</div>
 							</div>
 							<div class="reg-step" ng-show="step == 6">
-								<h5>學業履歷</h5>
+								<h5 class="tm-h5">學業履歷</h5>
 								<div class="row-section">
 									<div class="s-head" ng-click="hkcee_expanded = !hkcee_expanded" ng-class="{opened: hkcee_expanded}"><a href="javascript:void(0);">香港中學會考成績(HKCEE)<i></i></a></div>
-									<div class="s-drop" ng-class="{slideDown: hkcee_expanded}">
+									<div class="s-drop" ng-class="{slideDown: hkcee_expanded}" which="hkcee_expanded">
 										<div class="linehead">
 											<div class="line"></div>
 											<div class="label"><div>主科</div></div>
@@ -760,7 +764,7 @@
 								</div>
 								<div class="row-section">
 									<div class="s-head" ng-click="hkale_expanded = !hkale_expanded" ng-class="{opened: hkale_expanded}"><a href="javascript:void(0);">香港高級程度會考成績(HKALE)<i></i></a></div>
-									<div class="s-drop" ng-class="{slideDown: hkale_expanded}">
+									<div class="s-drop" ng-class="{slideDown: hkale_expanded}" which="hkale_expanded">
 										<div class="linehead">
 											<div class="line"></div>
 											<div class="label"><div>主科</div></div>
@@ -821,7 +825,7 @@
 								</div>
 								<div class="row-section">
 									<div class="s-head" ng-click="hkdse_expanded = !hkdse_expanded" ng-class="{opened: hkdse_expanded}"><a href="javascript:void(0);">香港中學文憑成績(HKDSE)<i></i></a></div>
-									<div class="s-drop" ng-class="{slideDown: hkdse_expanded}">
+									<div class="s-drop" ng-class="{slideDown: hkdse_expanded}" which="hkdse_expanded">
 										<div class="linehead">
 											<div class="line"></div>
 											<div class="label"><div>核心科目</div></div>
@@ -950,17 +954,650 @@
 										</div>
 									</div>
 								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="otherskill_expanded = !otherskill_expanded" ng-class="{opened: otherskill_expanded}"><a href="javascript:void(0);">其他學術，語言及音樂<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: otherskill_expanded}" which="otherskill_expanded">
+										<div class="linehead">
+											<div class="line"></div>
+											<div class="label"><div>語言</div></div>
+										</div>
+										<div class="subjects-c clearfix">
+											<div class="subject" ng-repeat="(key, value) in subject.otherskill.lang" ng-class="{extrasize: value.extrasize}">
+												<label for="{{key}}">{{value.label}}<span ng-if="value.compulsory">*</span></label>
+												<div class="style-select">
+													<select name="{{key}}" id="{{key}}" ng-model="formData[key]" ng-options="grade.value as grade.text for grade in value.option" ng-required="value.compulsory">
+														<option value="">請選擇</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg.reg_oral_putonghua.$error" ng-if="errMsg.reg_oral_putonghua">
+											<div ng-message="required">請輸入你的普通話成績</div>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg.reg_oral_eng.$error" ng-if="errMsg.reg_oral_eng">
+											<div ng-message="required">請輸入你的英文拚音成績</div>
+										</div>
+										<div class="linehead">
+											<div class="line"></div>
+											<div class="label"><div>音樂</div></div>
+										</div>
+										<div class="subjects-c tm-mi-c clearfix">
+											<div class="tm-mi-set clearfix">
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments1">樂器</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments1" id="reg_musicinstruments1" ng-model="formData.reg_musicinstruments1" ng-options="mi.value as mi.text for mi in subject.mioption" ng-required="formData.reg_musicinstruments1_lv || formData.reg_musicinstruments1_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments1_lv">已考獲級別</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments1_lv" id="reg_musicinstruments1_lv" ng-model="formData.reg_musicinstruments1_lv" ng-options="mi.value as mi.text for mi in subject.mileveloption" ng-required="formData.reg_musicinstruments1 || formData.reg_musicinstruments1_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments1_years">考取年份
+</label>
+													<div class="input-c">
+														<input type="number" class="textfield" name="reg_musicinstruments1_years" id="reg_musicinstruments1_years" ng-model="formData.reg_musicinstruments1_years" ng-required="formData.reg_musicinstruments1 || formData.reg_musicinstruments1_lv" min="1950" max="{{currentYear}}">
+													</div>
+												</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments1.$error" ng-if="errMsg.reg_musicinstruments1">
+												<div ng-message="required min max">請輸入你的樂器名稱</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments1_lv.$error" ng-if="errMsg.reg_musicinstruments1_lv">
+												<div ng-message="required min max">請輸入你的樂器級別</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments1_years.$error" ng-if="errMsg.reg_musicinstruments1_years">
+												<div ng-message="required min max">請輸入你的考取年份</div>
+											</div>
+											
+											<div class="tm-mi-set clearfix">
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments2">樂器</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments2" id="reg_musicinstruments2" ng-model="formData.reg_musicinstruments2" ng-options="mi.value as mi.text for mi in subject.mioption" ng-required="formData.reg_musicinstruments2_lv || formData.reg_musicinstruments2_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments2_lv">已考獲級別</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments2_lv" id="reg_musicinstruments2_lv" ng-model="formData.reg_musicinstruments2_lv" ng-options="mi.value as mi.text for mi in subject.mileveloption" ng-required="formData.reg_musicinstruments2 || formData.reg_musicinstruments2_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments2_years">考取年份</label>
+													<div class="input-c">
+														<input type="number" class="textfield" name="reg_musicinstruments2_years" id="reg_musicinstruments2_years" ng-model="formData.reg_musicinstruments2_years" ng-required="formData.reg_musicinstruments2 || formData.reg_musicinstruments2_lv" min="1950" max="{{currentYear}}">
+													</div>
+												</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments2.$error" ng-if="errMsg.reg_musicinstruments2">
+												<div ng-message="required min max">請輸入你的樂器名稱</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments2_lv.$error" ng-if="errMsg.reg_musicinstruments2_lv">
+												<div ng-message="required min max">請輸入你的樂器級別</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments2_years.$error" ng-if="errMsg.reg_musicinstruments2_years">
+												<div ng-message="required min max">請輸入你的考取年份</div>
+											</div>
+											
+											<div class="tm-mi-set clearfix">
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments3">樂器</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments3" id="reg_musicinstruments3" ng-model="formData.reg_musicinstruments3" ng-options="mi.value as mi.text for mi in subject.mioption" ng-required="formData.reg_musicinstruments3_lv || formData.reg_musicinstruments3_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments3_lv">已考獲級別</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments3_lv" id="reg_musicinstruments3_lv" ng-model="formData.reg_musicinstruments3_lv" ng-options="mi.value as mi.text for mi in subject.mileveloption" ng-required="formData.reg_musicinstruments3 || formData.reg_musicinstruments3_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments3_years">考取年份</label>
+													<div class="input-c">
+														<input type="number" class="textfield" name="reg_musicinstruments3_years" id="reg_musicinstruments3_years" ng-model="formData.reg_musicinstruments3_years" ng-required="formData.reg_musicinstruments3 || formData.reg_musicinstruments3_lv" min="1950" max="{{currentYear}}">
+													</div>
+												</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments3.$error" ng-if="errMsg.reg_musicinstruments3">
+												<div ng-message="required min max">請輸入你的樂器名稱</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments3_lv.$error" ng-if="errMsg.reg_musicinstruments3_lv">
+												<div ng-message="required min max">請輸入你的樂器級別</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments3_years.$error" ng-if="errMsg.reg_musicinstruments3_years">
+												<div ng-message="required min max">請輸入你的考取年份</div>
+											</div>
+											
+											<div class="tm-mi-set clearfix">
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments_other">樂器</label>
+													<div class="input-c">
+														<input type="text" class="textfield" name="reg_musicinstruments_other" id="reg_musicinstruments_other" ng-model="formData.reg_musicinstruments_other" ng-required="formData.reg_musicinstruments_other_lv || formData.reg_musicinstruments_other_years">
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments_other_lv">已考獲級別</label>
+													<div class="style-select">
+														<select name="reg_musicinstruments_other_lv" id="reg_musicinstruments_other_lv" ng-model="formData.reg_musicinstruments_other_lv" ng-options="mi.value as mi.text for mi in subject.mileveloption" ng-required="formData.reg_musicinstruments_other || formData.reg_musicinstruments_other_years">
+															<option value="">請選擇</option>
+														</select>
+													</div>
+												</div>
+												<div class="tm-mi subject">
+													<label for="reg_musicinstruments_other_years">考取年份</label>
+													<div class="input-c">
+														<input type="number" class="textfield" name="reg_musicinstruments_other_years" id="reg_musicinstruments_other_years" ng-model="formData.reg_musicinstruments_other_years" ng-required="formData.reg_musicinstruments_other || formData.reg_musicinstruments_other_lv" min="1950" max="{{currentYear}}">
+													</div>
+												</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments_other.$error" ng-if="errMsg.reg_musicinstruments_other">
+												<div ng-message="required min max">請輸入你的樂器名稱</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments_other_lv.$error" ng-if="errMsg.reg_musicinstruments_other_lv">
+												<div ng-message="required min max">請輸入你的樂器級別</div>
+											</div>
+											<div class="error-msg" ng-messages="tutor_reg.reg_musicinstruments_other_years.$error" ng-if="errMsg.reg_musicinstruments_other_years">
+												<div ng-message="required min max">請輸入你的考取年份</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="field-label"><label for="reg_music_theory_lv">樂理考獲級別</label></div>
+											<div class="field-input">
+												<div class="style-select">
+													<select name="reg_music_theory_lv" id="reg_music_theory_lv" ng-model="formData.reg_music_theory_lv" ng-required="formData.reg_music_theory_years">
+														<option value="">請選擇</option>
+														<option value="一級">一級</option>
+														<option value="二級">二級</option>
+														<option value="三級">三級</option>
+														<option value="四級">四級</option>
+														<option value="五級">五級</option>
+														<option value="六級">六級</option>
+														<option value="七級">七級</option>
+														<option value="八級">八級</option>
+														<option value="演奏級">演奏級</option>
+													</select>
+												</div>
+												<div class="error-msg" ng-messages="tutor_reg.reg_music_theory_lv.$error" ng-if="errMsg.reg_music_theory_lv">
+													<div ng-message="required">請輸入你的樂理考獲級別</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="field-label"><label for="reg_music_theory_years">樂理考獲年份</label></div>
+											<div class="field-input">
+												<input type="number" class="textfield" name="reg_music_theory_years" id="reg_music_theory_years" ng-model="formData.reg_music_theory_years" ng-required="formData.reg_music_theory_lv" min="1950" max="{{currentYear}}">
+												<div class="error-msg" ng-messages="tutor_reg.reg_music_theory_years.$error" ng-if="errMsg.reg_music_theory_years">
+													<div ng-message="required min max">請輸入你的樂理考獲年份</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="field-label"><label for="reg_comp_applicantion">電腦程式／軟件</label></div>
+											<div class="field-input">
+												<input type="text" class="textfield" name="reg_comp_applicantion" id="reg_comp_applicantion" ng-model="formData.reg_comp_applicantion">
+											</div>
+										</div>
+										<div class="row">
+											<div class="field-label"><label for="reg_swim_skill">游泳技能／泳式</label></div>
+											<div class="field-input">
+												<input type="text" class="textfield" name="reg_swim_skill" id="reg_swim_skill" ng-model="formData.reg_swim_skill">
+											</div>
+										</div>
+										<div class="row">
+											<div class="field-label"><label for="reg_activity_exp">曾參與之課外活動或校內外組織</label></div>
+											<div class="field-input">
+												<input type="text" class="textfield" name="reg_activity_exp" id="reg_activity_exp" ng-model="formData.reg_activity_exp">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="reg-step" ng-show="step == 7">
+								<h5 class="tm-h5">授課區域</h5>
+								<div class="row-section">
+									<div class="s-head" ng-click="hkisland_expanded = !hkisland_expanded" ng-class="{opened: hkisland_expanded}"><a href="javascript:void(0);">香港區<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: hkisland_expanded}" which="hkisland_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingarea.hkisland">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="kowloon_expanded = !kowloon_expanded" ng-class="{opened: kowloon_expanded}"><a href="javascript:void(0);">九龍區<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: kowloon_expanded}" which="kowloon_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingarea.kowloon">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="nt_expanded = !nt_expanded" ng-class="{opened: nt_expanded}"><a href="javascript:void(0);">新界及離島區<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: nt_expanded}" which="nt_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingarea.kowloon">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<h5 class="tm-h5">授課時間</h5>
+								<div class="ps">(請揀選你最近60日可以補習的時段；這個時間表在你日後登入時，亦可以隨時作出修正。)</div>
+								<table class="tm-teaching-time-tb">
+									<tr>
+										<td class="t"><span>08:00</span></td>
+										<td>星期日</td>
+										<td>星期一</td>
+										<td>星期二</td>
+										<td>星期三</td>
+										<td>星期四</td>
+										<td>星期五</td>
+										<td>星期六</td>
+									</tr>
+									<tr>
+										<td class="t"><span>09:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_1" value="1" bind="formData['reg_time']['reg_time_sun_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_1" value="1" bind="formData['reg_time']['reg_time_mon_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_1" value="1" bind="formData['reg_time']['reg_time_thu_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_1" value="1" bind="formData['reg_time']['reg_time_wed_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_1" value="1" bind="formData['reg_time']['reg_time_thur_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_1" value="1" bind="formData['reg_time']['reg_time_fri_1']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_1" value="1" bind="formData['reg_time']['reg_time_sat_1']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>10:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_2" value="1" bind="formData['reg_time']['reg_time_sun_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_2" value="1" bind="formData['reg_time']['reg_time_mon_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_2" value="1" bind="formData['reg_time']['reg_time_thu_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_2" value="1" bind="formData['reg_time']['reg_time_wed_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_2" value="1" bind="formData['reg_time']['reg_time_thur_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_2" value="1" bind="formData['reg_time']['reg_time_fri_2']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_2" value="1" bind="formData['reg_time']['reg_time_sat_2']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>11:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_3" value="1" bind="formData['reg_time']['reg_time_sun_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_3" value="1" bind="formData['reg_time']['reg_time_mon_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_3" value="1" bind="formData['reg_time']['reg_time_thu_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_3" value="1" bind="formData['reg_time']['reg_time_wed_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_3" value="1" bind="formData['reg_time']['reg_time_thur_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_3" value="1" bind="formData['reg_time']['reg_time_fri_3']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_3" value="1" bind="formData['reg_time']['reg_time_sat_3']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>12:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_4" value="1" bind="formData['reg_time']['reg_time_sun_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_4" value="1" bind="formData['reg_time']['reg_time_mon_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_4" value="1" bind="formData['reg_time']['reg_time_thu_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_4" value="1" bind="formData['reg_time']['reg_time_wed_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_4" value="1" bind="formData['reg_time']['reg_time_thur_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_4" value="1" bind="formData['reg_time']['reg_time_fri_4']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_4" value="1" bind="formData['reg_time']['reg_time_sat_4']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>13:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_5" value="1" bind="formData['reg_time']['reg_time_sun_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_5" value="1" bind="formData['reg_time']['reg_time_mon_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_5" value="1" bind="formData['reg_time']['reg_time_thu_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_5" value="1" bind="formData['reg_time']['reg_time_wed_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_5" value="1" bind="formData['reg_time']['reg_time_thur_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_5" value="1" bind="formData['reg_time']['reg_time_fri_5']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_5" value="1" bind="formData['reg_time']['reg_time_sat_5']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>14:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_6" value="1" bind="formData['reg_time']['reg_time_sun_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_6" value="1" bind="formData['reg_time']['reg_time_mon_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_6" value="1" bind="formData['reg_time']['reg_time_thu_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_6" value="1" bind="formData['reg_time']['reg_time_wed_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_6" value="1" bind="formData['reg_time']['reg_time_thur_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_6" value="1" bind="formData['reg_time']['reg_time_fri_6']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_6" value="1" bind="formData['reg_time']['reg_time_sat_6']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>15:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_7" value="1" bind="formData['reg_time']['reg_time_sun_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_7" value="1" bind="formData['reg_time']['reg_time_mon_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_7" value="1" bind="formData['reg_time']['reg_time_thu_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_7" value="1" bind="formData['reg_time']['reg_time_wed_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_7" value="1" bind="formData['reg_time']['reg_time_thur_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_7" value="1" bind="formData['reg_time']['reg_time_fri_7']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_7" value="1" bind="formData['reg_time']['reg_time_sat_7']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>16:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_8" value="1" bind="formData['reg_time']['reg_time_sun_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_8" value="1" bind="formData['reg_time']['reg_time_mon_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_8" value="1" bind="formData['reg_time']['reg_time_thu_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_8" value="1" bind="formData['reg_time']['reg_time_wed_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_8" value="1" bind="formData['reg_time']['reg_time_thur_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_8" value="1" bind="formData['reg_time']['reg_time_fri_8']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_8" value="1" bind="formData['reg_time']['reg_time_sat_8']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>17:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_9" value="1" bind="formData['reg_time']['reg_time_sun_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_9" value="1" bind="formData['reg_time']['reg_time_mon_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_9" value="1" bind="formData['reg_time']['reg_time_thu_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_9" value="1" bind="formData['reg_time']['reg_time_wed_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_9" value="1" bind="formData['reg_time']['reg_time_thur_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_9" value="1" bind="formData['reg_time']['reg_time_fri_9']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_9" value="1" bind="formData['reg_time']['reg_time_sat_9']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>18:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_10" value="1" bind="formData['reg_time']['reg_time_sun_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_10" value="1" bind="formData['reg_time']['reg_time_mon_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_10" value="1" bind="formData['reg_time']['reg_time_thu_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_10" value="1" bind="formData['reg_time']['reg_time_wed_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_10" value="1" bind="formData['reg_time']['reg_time_thur_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_10" value="1" bind="formData['reg_time']['reg_time_fri_10']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_10" value="1" bind="formData['reg_time']['reg_time_sat_10']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>19:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_11" value="1" bind="formData['reg_time']['reg_time_sun_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_11" value="1" bind="formData['reg_time']['reg_time_mon_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_11" value="1" bind="formData['reg_time']['reg_time_thu_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_11" value="1" bind="formData['reg_time']['reg_time_wed_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_11" value="1" bind="formData['reg_time']['reg_time_thur_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_11" value="1" bind="formData['reg_time']['reg_time_fri_11']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_11" value="1" bind="formData['reg_time']['reg_time_sat_11']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>20:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_12" value="1" bind="formData['reg_time']['reg_time_sun_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_12" value="1" bind="formData['reg_time']['reg_time_mon_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_12" value="1" bind="formData['reg_time']['reg_time_thu_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_12" value="1" bind="formData['reg_time']['reg_time_wed_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_12" value="1" bind="formData['reg_time']['reg_time_thur_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_12" value="1" bind="formData['reg_time']['reg_time_fri_12']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_12" value="1" bind="formData['reg_time']['reg_time_sat_12']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>21:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_13" value="1" bind="formData['reg_time']['reg_time_sun_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_13" value="1" bind="formData['reg_time']['reg_time_mon_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_13" value="1" bind="formData['reg_time']['reg_time_thu_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_13" value="1" bind="formData['reg_time']['reg_time_wed_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_13" value="1" bind="formData['reg_time']['reg_time_thur_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_13" value="1" bind="formData['reg_time']['reg_time_fri_13']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_13" value="1" bind="formData['reg_time']['reg_time_sat_13']"></fakecheckbox></td>
+									</tr>
+									<tr>
+										<td class="t"><span>22:00</span></td>
+										<td><fakecheckbox cname="reg_time_sun_14" value="1" bind="formData['reg_time']['reg_time_sun_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_mon_14" value="1" bind="formData['reg_time']['reg_time_mon_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thu_14" value="1" bind="formData['reg_time']['reg_time_thu_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_wed_14" value="1" bind="formData['reg_time']['reg_time_wed_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_thur_14" value="1" bind="formData['reg_time']['reg_time_thur_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_fri_14" value="1" bind="formData['reg_time']['reg_time_fri_14']"></fakecheckbox></td>
+										<td><fakecheckbox cname="reg_time_sat_14" value="1" bind="formData['reg_time']['reg_time_sat_14']"></fakecheckbox></td>
+									</tr>
+								</table>
+								<h5 class="tm-h5">授課內容</h5>
+								<div class="row-section">
+									<div class="s-head" ng-click="teachingsubject_expanded = !teachingsubject_expanded" ng-class="{opened: teachingsubject_expanded}"><a href="javascript:void(0);">補習<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: teachingsubject_expanded}" which="teachingsubject_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingsubject.subject">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="teachingoral_expanded = !teachingoral_expanded" ng-class="{opened: teachingoral_expanded}"><a href="javascript:void(0);">會話<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: teachingoral_expanded}" which="teachingoral_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingsubject.oral">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="teachingmi_expanded = !teachingmi_expanded" ng-class="{opened: teachingmi_expanded}"><a href="javascript:void(0);">音樂<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: teachingmi_expanded}" which="teachingmi_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingsubject.mi">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row-section">
+									<div class="s-head" ng-click="teachingother_expanded = !teachingother_expanded" ng-class="{opened: teachingother_expanded}"><a href="javascript:void(0);">其他<i></i></a></div>
+									<div class="s-drop" ng-class="{slideDown: teachingother_expanded}" which="teachingmi_expanded">
+										<div class="tm-small-c clearfix">
+											<div class="tm-small-fields" ng-repeat="(key, value) in teachingsubject.other">
+												<fakecheckbox cname="{{key}}" value="{{value.value}}" bind="formData[key]"></fakecheckbox>
+												<label for="{{key}}">{{value.label}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<h5 class="tm-h5">授課程度</h5>
+								<div class="row">
+									<div class="field-label"><label for="">可教授程度(補習)<span>*</span></label></div>
+									<div class="field-input tm-teaching-lv-options clearfix">
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade1" value="grade1" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade1']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">小一至小三(初小)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade2" value="grade2" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade2']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">小四至小六(高小)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade3" value="grade3" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade3']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">中一至中三(初中)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade4" value="grade4" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade4']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">中四至中六(高中)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade5" value="grade5" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade5']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">大專或以上</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_subject[]" cid="reg_teaching_lv_subject_grade6" value="grade6" bind="formData['reg_teaching_lv_subject']['reg_teaching_lv_subject_grade6']" crequired="!someSelected(formData.reg_teaching_lv_subject)"></fakecheckbox>
+											<span class="option-caption">成人</span>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg['reg_teaching_lv_subject[]']['$error']" ng-if="errMsg['reg_teaching_lv_subject[]']">
+											<div ng-message="required">請輸入你的可教授程度(補習)</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="field-label"><label for="">可教授程度(會話)<span>*</span></label></div>
+									<div class="field-input tm-teaching-lv-options clearfix">
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_oral[]" cid="reg_teaching_lv_oral_grade1" value="grade1" bind="formData['reg_teaching_lv_oral']['reg_teaching_lv_oral_grade1']" crequired="!someSelected(formData.reg_teaching_lv_oral)"></fakecheckbox>
+											<span class="option-caption">初級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_oral[]" cid="reg_teaching_lv_oral_grade2" value="grade2" bind="formData['reg_teaching_lv_oral']['reg_teaching_lv_oral_grade2']" crequired="!someSelected(formData.reg_teaching_lv_oral)"></fakecheckbox>
+											<span class="option-caption">中級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_oral[]" cid="reg_teaching_lv_oral_grade3" value="grade3" bind="formData['reg_teaching_lv_oral']['reg_teaching_lv_oral_grade3']" crequired="!someSelected(formData.reg_teaching_lv_oral)"></fakecheckbox>
+											<span class="option-caption">高級</span>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg['reg_teaching_lv_oral[]']['$error']" ng-if="errMsg['reg_teaching_lv_oral[]']">
+											<div ng-message="required">請輸入你的可教授程度(會話)</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="field-label"><label for="">可教授程度(音樂)<span>*</span></label></div>
+									<div class="field-input tm-teaching-lv-options clearfix">
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade1" value="grade1" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade1']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">初學</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade2" value="grade2" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade2']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">一級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade3" value="grade3" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade3']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">二級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade4" value="grade4" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade4']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">三級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade5" value="grade5" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade5']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">四級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade6" value="grade6" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade6']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">五級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade7" value="grade7" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade7']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">六級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade8" value="grade8" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade8']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">七級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_mi[]" cid="reg_teaching_lv_mi_grade9" value="grade9" bind="formData['reg_teaching_lv_mi']['reg_teaching_lv_mi_grade9']" crequired="!someSelected(formData.reg_teaching_lv_mi)"></fakecheckbox>
+											<span class="option-caption">八級</span>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg['reg_teaching_lv_mi[]']['$error']" ng-if="errMsg['reg_teaching_lv_mi[]']">
+											<div ng-message="required">請輸入你的可教授程度(音樂)</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="field-label"><label for="">可教授程度(其他)<span>*</span></label></div>
+									<div class="field-input tm-teaching-lv-options clearfix">
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade1" value="grade1" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade1']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">小一至小三(初小)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade2" value="grade2" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade2']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">小四至小六(高小)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade3" value="grade3" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade3']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">中一至中三(初中)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade4" value="grade4" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade4']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">中四至中六(高中)</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade5" value="grade5" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade5']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">大專或以上</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade6" value="grade6" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade6']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">大專或以上</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade7" value="grade7" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade7']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">成人</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade8" value="grade8" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade8']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">初級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade9" value="grade9" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade9']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">中級</span>
+										</div>
+										<div class="tm-options-container">
+											<fakecheckbox cname="reg_teaching_lv_other[]" cid="reg_teaching_lv_other_grade10" value="grade10" bind="formData['reg_teaching_lv_other']['reg_teaching_lv_other_grade10']" crequired="!someSelected(formData.reg_teaching_lv_other)"></fakecheckbox>
+											<span class="option-caption">高級</span>
+										</div>
+										<div class="error-msg" ng-messages="tutor_reg['reg_teaching_lv_other[]']['$error']" ng-if="errMsg['reg_teaching_lv_other[]']">
+											<div ng-message="required">請輸入你的可教授程度(其他)</div>
+										</div>
+									</div>
+								</div>
+								<h5 class="tm-h5">授課時薪</h5>
+								<div class="row">
+									<div class="field-label"><label for="reg_min_salary">最低補習時薪（港幣）<span>*</span></label></div>
+									<div class="field-input">
+										<input type="number" class="textfield" name="reg_min_salary" id="reg_min_salary" ng-model="formData.reg_min_salary" min="0" required>
+										<div class="error-msg" ng-messages="tutor_reg.reg_min_salary.$error" ng-if='tutor_reg.reg_min_salary.$touched || errMsg.reg_min_salary'>
+											<div ng-message="min number">請輸入有效的最低補習時薪</div>
+											<div ng-message="required">請輸入最低補習時薪</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="field-label"><label for="reg_expect_salary">理想補習時薪（港幣）<span>*</span></label></div>
+									<div class="field-input">
+										<input type="number" class="textfield" name="reg_expect_salary" id="reg_expect_salary" ng-model="formData.reg_expect_salary" min="0" required>
+										<div class="error-msg" ng-messages="tutor_reg.reg_expect_salary.$error" ng-if='tutor_reg.reg_expect_salary.$touched || errMsg.reg_expect_salary'>
+											<div ng-message="min number">請輸入有效的理想補習時薪</div>
+											<div ng-message="required">請輸入理想補習時薪</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="reg-step" ng-show="step == 8">
+								<h5 class="tm-h5">自我簡介</h5>
+								<div class="row">
+									<div class="field-label"><label for="reg_self_intro_title">自我簡介標題<span>*</span></label></div>
+									<div class="field-input">
+										<input type="text" class="textfield" name="reg_self_intro_title" id="reg_self_intro_title" ng-model="formData.reg_self_intro_title" required>
+										<div class="error-msg" ng-messages="tutor_reg.reg_self_intro_title.$error" ng-if='tutor_reg.reg_self_intro_title.$touched || errMsg.reg_self_intro_title'>
+											<div ng-message="required">請輸入你的自我簡介標題</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="field-label"><label for="reg_self_intro">介紹自己<span>*</span></label></div>
+									<div class="field-input">
+										<textarea class="textfield" name="reg_self_intro" id="reg_self_intro" ng-model="formData.reg_self_intro" required></textarea>
+										<div class="ps">(用30字以上介紹自己。)</div>
+										<div class="error-msg" ng-messages="tutor_reg.reg_self_intro.$error" ng-if='tutor_reg.reg_self_intro.$touched || errMsg.reg_self_intro'>
+											<div ng-message="required">請輸入你的自我簡介</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="ctrl-btn">
-								{{tutor_reg.$valid}}
-								{{formData}}
-								<a href="#" class="btn" ng-click="next()">下一步</a>
+								<!--{{formData}}-->
+								<a class="tm-btn" ng-click="prev()" ng-show="step > 1">上一步</a>
+								<a class="tm-btn" ng-click="next()">下一步</a>
+								<a class="tm-btn" ng-click="submit()" ng-show="step == finalstep">完成</a>
 							</div>
-							<!--{{someSelected(formData.selectedFruits)}}
-							{{tutor_reg.gender.$valid}}
-							{{tutor_reg.reg_email.$valid}}
-							{{formData.selectedFruits}}
-							{{tutor_reg.reg_mainlang.$valid}}-->
 						</form>
 					</div>
 				</div>
