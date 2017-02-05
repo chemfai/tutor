@@ -34,7 +34,7 @@
 			<div class="tm-menu">
 				<ul>
 					<li>
-						<a href="<?=$wwwroot?>/cases">
+						<a href="#">
 							<div class="circle"><img src="<?=$wwwroot?>/img/menu_caseinfo.svg" width="45"></div>
 							<div class="text">個案資訊</div>
 						</a>
