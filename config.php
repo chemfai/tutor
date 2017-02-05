@@ -28,4 +28,4 @@ $wwwroot = $settings['wwwroot']?$settings['wwwroot']:"//".$_SERVER[SERVER_NAME].
 $settings['logo'] = "";
 $settings['slogan'] = "";
 
-$version = rand(1000);
+$version = rand(0,1000);
