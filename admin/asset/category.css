@@ -1,0 +1,6 @@
+.category-post-container{width:24%;margin-left:4px;overflow:hidden;text-align:center}
+.category-post{width:96%;margin:0;height:300px;overflow:hidden;/*border:1px solid #eee*/}
+.category-post .image{width:100%;height:192px;/*overflow:hidden;margin:5px*/}
+.category-post .bg-layer{width:100%;height:60px;position:relative;}
+.category-post h2{margin:5px;font-size:14px;line-height:20px;height:40px;overflow:hidden;text-align:center}
+.category-post article{margin:5px;font-size:10px;line-height:12px;height:36px;overflow:hidden;}

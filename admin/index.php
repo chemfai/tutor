@@ -1,7 +1,6 @@
 <?php
-require_once (dirname(__FILE__)."/library/init.php");
 
-extract($_REQUEST);
+require_once (dirname(__FILE__)."/library/init.php");
 
 $full_path = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -9,7 +8,7 @@ if (empty($path)){
 	$path = "index";
 }
 
-if (strpos($_SERVER['REQUEST_URI'], "?")===false && strpos($_SERVER['REQUEST_URI'], "action.php")===false && empty($_POST)){
+if ($config[cache]=="active" && strpos($_SERVER['REQUEST_URI'], "?")===false && strpos($_SERVER['REQUEST_URI'], "action.php")===false && empty($_POST)){
 	
 	$cache_file = str_replace("/", "_", $path);
 	$cache_path = "cache/$cache_file";
@@ -29,44 +28,49 @@ if (strpos($_SERVER['REQUEST_URI'], "?")===false && strpos($_SERVER['REQUEST_URI
 	}
 
 }
-
-$seo_title = "";
-$title = "";
 	
 $bread = explode('/', $path);
+$module = $bread[0];
+$seo_title = end($bread);
+$title = end($bread);
 if (count($bread)>0){
-	$seo_title = end($bread);
-	$title = end($bread);
 	$path2 = str_replace("/$title", "", $path);
 }
 
-if (file_exists(dirname(__FILE__)."/module/$path/index.php")){
-	$content = get_content(dirname(__FILE__)."/module/$path/index.php");
-}
-else if (file_exists(dirname(__FILE__)."/module/$path.php")){
-	$content = get_content(dirname(__FILE__)."/module/$path.php");
-} 
-else if (file_exists(dirname(__FILE__)."/module/$path2.php")){
-	$content = get_content(dirname(__FILE__)."/module/$path2.php");
-} 
-else if (file_exists(dirname(__FILE__)."/module/$path")){
-	$content = get_content(dirname(__FILE__)."/module/$path");
-}
-else {
-	$content = "404 error";
-}
-
 if (strpos($path, "action.php")!==false){
-	
-	echo $content;
-	
-} else {
 		
-	include "library/header.php";
-
-	echo $content;
-
-	include "library/footer.php";
+	if (file_exists(dirname(__FILE__)."/module/$path")){
+		include dirname(__FILE__)."/module/$path";
+	} else {
+		echo "error: file not found.";
+	}
 
 }
-	
+else
+{
+		
+	include dirname(__FILE__)."/library/header.php";
+
+	if (file_exists(dirname(__FILE__)."/module/$path/index.php")){
+		include dirname(__FILE__)."/module/$path/index.php";
+	}
+	else if (file_exists(dirname(__FILE__)."/module/$path.php")){
+		include dirname(__FILE__)."/module/$path.php";
+	} 
+	else if (file_exists(dirname(__FILE__)."/module/$path2/index.php")){
+		include dirname(__FILE__)."/module/$path2/index.php";
+	} 
+	else if (file_exists(dirname(__FILE__)."/module/$path2.php")){
+		include dirname(__FILE__)."/module/$path2.php";
+	} 
+	else if (file_exists(dirname(__FILE__)."/module/$path")){
+		include dirname(__FILE__)."/module/$path";
+	}
+	else {
+		include dirname(__FILE__)."/under_construction.php";
+		//include dirname(__FILE__)."/404.php";
+	}
+
+	include dirname(__FILE__)."/library/footer.php";
+
+}

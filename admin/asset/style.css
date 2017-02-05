@@ -1,0 +1,130 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+html{overflow-y:scroll;}
+body{background:#eee}
+html,body,section{margin:0;padding:0}
+html,body,section,input,textarea,button{font-family: 'Noto Sans TC', sans-serif;}
+input,textarea,button,section{box-sizing:border-box;}
+textarea {resize: none;}
+ul.form,
+ul.menu{list-style-type: none;margin: 0;padding: 0;}
+ul.menu li{}
+ul.horizontal li{display:inline-block}
+.container{margin-left:auto;margin-right:auto;width:1000px;position:relative}
+.button{background:#ccc;color:#fff;border:0}
+.confirm.button{background:#f40;color:#fff}
+.cancel.button{background:#ccc;color:#fff}
+.url{cursor:pointer}
+.hidden{display:none}
+.block{/*float:left;*/display:inline-block; vertical-align:top;margin:0;padding:0/*border:1px #eee solid;*/}
+.center{margin-left:auto;margin-right:auto}
+.left{float:left}
+.right{float:right}
+.lazy{background:url(../../images/loading.gif) #fff no-repeat center;}
+.tips{color:#999;font-size:10px;padding:1px 5px}
+.row{display:table;width:100%}
+.col{display:table-cell}
+#footer{background:#fff;}
+#content{margin-bottom:50px;min-height:1000px}
+#index-main-menu >ul.menu> li{padding:8px 20px;border-top:2px #ccc solid;background:#eee;color:#999;cursor:pointer}
+#index-main-menu >ul.menu> li:hover{background:#ccc;color:#333;}
+#index-main-menu-title{margin:0;padding:10px;font-size:10px;background:#f40;color:#fff;}
+#index-highlight-top-menu{background:#00A399;color:#fff;z-index:1;position:relative;margin-bottom:-30px;box-shadow:-1px -1px 10px #333}
+#index-highlight-top-menu ul.menu li{border-right:1px solid #fff;cursor:pointer}
+#index-highlight-top-menu >ul.menu> li{padding:10px;margin-right:-3px;display:inline-block;}
+#index-highlight-top-menu >ul.menu> li:hover{background:#ccc;color:#000;}
+#logo{padding:5px;font-family:'Noto Sans TC';color:#f40;float:left;font-size:40px;line-height:40px;}
+#color_bar {width:100%;height: 12px;background: #f40;}
+#blog-bar {width:100%;height: 2px;background: #f40; margin-bottom:15px}
+#keyword-container{background:#f40;float:right;width:580px;height:30px;border:1px solid #eee;overflow:hidden;padding:1px;}
+#keyword-tips{font-size:14px;color:#999;}
+#keyword{height:30px;line-height:24px;font-size:14px;padding-left:10px;width:500px;border:0}
+#search{float:right;padding:5px;margin:2px;}
+#search-button{float:right;padding:5px 20px;font-size:14px;color:#fff;cursor:pointer/*background:url(../../images/search.png) center no-repeat;background-size:30px auto;cursor:pointer;width:50px;height:50px;margin-top:5px;*/}
+#content-section{/*display:inline-block;*/margin-left:auto;margin-right:auto;}
+#footer-section{width:800px/*1150px*/;margin-left:auto;margin-right:auto;}
+#footer-ad{float:right;position:relative}
+#index-left-section{width:800px;display:inline-block;}
+#index-right-section{width:340px;display:inline-block;display:none;vertical-align:top;margin-left:5px;margin-top:-80px}
+#index-main-menu{width:195px;margin-right:5px;height:550px;overflow-y:auto;background:#eee;box-shadow:0px -1px 1px #333;border-bottom:1px solid #ccc}
+#index-highlight{width:600px;height:550px;overflow:hidden;position:absolute;box-shadow:-1px -1px 1px #333;/*border-bottom:1px solid #ccc*/}
+#index-bg{/*background:#eee;*/width:100%;height:150px;position:absolute;z-index:-10;opacity:.6;}
+#category-title{padding:4px;}
+#product-title{}
+.content-title{color:#fff}
+#info-title {}
+#error-title{color:#999;margin-top:50px}
+#product-image{width:280px;height:280px;overflow:hidden;background:#fff;margin-top:80px}
+#product-middle-section{width:500px;}
+#product-quote-list{width:500px;}
+#product-left-section{width:280px;overflow:hidden;}
+#filter-container{margin-top:88px;height:400px;padding:0 20px;border:1px solid #eee}
+#blog-image{width:100%;height:400px;padding:0;margin:0;/*margin-bottom:1px;*/background:#ccc;overflow:hidden;}
+#blog-image .image{width:100%;height:400px;/*overflow:hidden;*/}
+
+.range{}
+.page-title{color:#fff}
+.profile-pic{border-radius:50%}
+.profile-pic-container{width:50px;height:50px}
+
+#site{width:100%;margin-left:auto;margin-right:auto;/*text-align:center*/}
+#index-ad{height:850px;overflow:hidden}
+
+.full-container{width:100%;margin-left:auto;margin-right:auto}
+.index-highlight-table{width:100%;min-height:300px;margin:5px 0}
+.main-highlight{width:599px;height:400px;padding:0;margin:0;/*margin-bottom:1px;*/background:#ccc;overflow:hidden;}
+.main-highlight .image{width:100%;height:400px;/*overflow:hidden;*/}
+.main-highlight .bg-layer{width:100%;height:80px;background:#000;position:relative;margin-top:-80px;opacity:.5}
+.main-highlight h2{margin:0 10px;font-size:16px;position:absolute;margin-top:-70px;color:#fff;z-index:1}
+.main-highlight article{margin:0 10px;font-size:12px;line-height:14px;height:28px;overflow:hidden;position:absolute;margin-top:-45px;color:#ddd;z-index:1}
+.mini-highlight{width:199px;height:150px;margin:0;margin-top:1px;margin-left:1px;padding:0;display:inline-block;}
+.mini-highlight:first-child{margin-left:0}
+.mini-highlight .image{width:100%;height:150px;/*overflow:hidden;*/}
+.mini-highlight .bg-layer{width:100%;height:100px;background:#000;position:relative;margin-top:-80px;opacity:.5}
+.mini-highlight h2{width:175px;overflow:hidden;margin:0 10px;font-size:14px;line-height:20px;height:20px;position:absolute;margin-top:-75px;color:#fff;z-index:1}
+.mini-highlight article{width:175px;overflow:hidden;margin:0 10px;font-size:10px;line-height:12px;height:24px;position:absolute;margin-top:-55px;color:#ddd;z-index:1}
+
+.user-form{border:1px solid #ccc;position:fixed;width:440px;height:300px;background:#fff;top:50%;left:50%;margin-left:-220px;margin-top:-150px;z-index:10}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;background:#ddd;opacity:0.5}
+.user-form {padding:20px}
+.user-form tr td:first-child{width:200px}
+.user-form h2{}
+
+.middle{position:fixed;width:440px;height:300px;top:50%;left:50%;margin-left:-220px;margin-top:-150px;z-index:10;text-align:center}
+
+.sidebar-trigger,
+.navbar{display:none}
+
+.red-btn{background:#f40;color:#fff!important}
+
+.index.main.banner{
+	width:560px;
+	height:400px;
+	margin:10px;
+	margin-left:220px;
+	border:1px solid #000;
+	display:inline-block;
+}
+
+.index.right.sidebar{
+	width:200px;
+	height:1330px;
+	margin:10px;
+	margin-left:0;
+	border:1px solid #000;
+	display:inline-block
+}
+
+.index.main.category{
+	width:385px;
+	height:300px;
+	margin:5px;
+	margin-top:0;
+	margin-bottom:10px;
+	margin-left:0;
+	border:1px solid #000;
+	display:inline-block;
+}
+#top-menu,
+#header-menu,
+#footer-menu {width:100%}
