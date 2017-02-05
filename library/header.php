@@ -1,9 +1,4 @@
-<?php 
-
-require_once (dirname(__FILE__)."/db.php");
-require_once (dirname(__FILE__)."/check_login.php");
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
